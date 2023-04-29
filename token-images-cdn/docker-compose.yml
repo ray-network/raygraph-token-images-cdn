@@ -11,7 +11,7 @@ services:
       - token-images-cdn:/var/lib/token-images-cdn
     restart: on-failure
     environment:
-      - HOST=${HOST:0.0.0.0}
+      - HOST=${HOST:-0.0.0.0}
       - PORT=${PORT:-4100}
       - GRAPHQL_API=${GRAPHQL_API:-https://api-graphql.raygraph.io}
       - GREST_API=${GREST_API:-https://api.koios.rest/api/v0}

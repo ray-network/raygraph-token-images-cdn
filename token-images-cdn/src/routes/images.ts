@@ -94,7 +94,7 @@ router.get("/721/:size/:fingerprint", async (req, res, next) => {
       res.send(processedImages[size])
     }
   } catch (error) {
-    console.log(fingerprint, JSON.stringify(error))
+    console.log(fingerprint, error)
     res.set(cacheHeaders)
     res.status(404).send()
   }
