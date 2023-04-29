@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  token-images-cdn:
+    build:
+      context: .
+    container_name: token-images-cdn
+    ports:
+      - 4100:4100
+    volumes:
+      - token-images-cdn:/var/lib/token-images-cdn
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+volumes:
+  token-images-cdn:
