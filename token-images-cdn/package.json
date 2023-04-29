@@ -5,11 +5,11 @@
   "author": "Ray Robot <hello@raynetwork.io>",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node",
+    "start": "node dist/index.js",
     "dev": "nodemon",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\""
   },
-  "type": "module",
   "dependencies": {
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",

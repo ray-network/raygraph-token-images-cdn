@@ -3,5 +3,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN yarn install
 COPY . .
+RUN yarn build
 EXPOSE 4100
-CMD [ "node", "src/index.ts" ]
+CMD [ "node", "dist/index.js" ]

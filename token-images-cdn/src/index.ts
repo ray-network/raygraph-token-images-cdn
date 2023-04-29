@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 })
 mountRoutes(app)
 app.listen(PORT, () => {
-  console.log(`Example app listening on port http://localhost:${PORT}`)
+  console.log(`App listening on port http://localhost:${PORT}`)
 })
 
 fs.mkdirSync(CDN_FOLDER, { recursive: true })
