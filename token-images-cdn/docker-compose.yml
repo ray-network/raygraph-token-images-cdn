@@ -6,10 +6,16 @@ services:
       context: .
     container_name: token-images-cdn
     ports:
-      - 4100:4100
+      - ${PORT:-4100}:4100
     volumes:
       - token-images-cdn:/var/lib/token-images-cdn
     restart: on-failure
+    environment:
+      - GRAPHQL_API=${GRAPHQL_API:-https://api-graphql.raygraph.io}
+      - GREST_API=${GREST_API:-https://api.koios.rest/api/v0}
+      - IPFS_API=${IPFS_API:-https://cloudflare-ipfs.com}
+      - CDN_FOLDER=${CDN_FOLDER:-/var/lib/token-images-cdn}
+      - IMG_SIZES=${IMG_SIZES:-["32", "64", "128", "256", "512", "1024"]}
     logging:
       driver: "json-file"
       options:

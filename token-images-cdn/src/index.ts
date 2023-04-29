@@ -6,7 +6,6 @@ import mountRoutes from "./routes"
 dotenv.config()
 const PORT = process.env.PORT
 const CDN_FOLDER = process.env.CDN_FOLDER
-const IMG_SIZES = JSON.parse(process.env.IMG_SIZES) as string[]
 
 const app = express()
 app.use(express.json())
