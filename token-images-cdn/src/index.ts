@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import mountRoutes from "./routes"
 
 dotenv.config()
+const HOST = process.env.HOST
 const PORT = process.env.PORT
 const CDN_FOLDER = process.env.CDN_FOLDER
 
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
   next()
 })
 mountRoutes(app)
-app.listen(PORT, () => {
+app.listen(Number(PORT), HOST, () => {
   console.log(`App listening on port http://localhost:${PORT}`)
 })
 
