@@ -13,7 +13,7 @@ services:
     environment:
       - HOST=${HOST:-0.0.0.0}
       - PORT=${PORT:-4100}
-      - GRAPHQL_API=${GRAPHQL_API:-https://api-graphql.raygraph.io}
+      - GRAPHQL_API=${GRAPHQL_API:-https://mainnet.blockchain.raygraph.io/graphql}
       - GREST_API=${GREST_API:-https://api.koios.rest/api/v0}
       - IPFS_API=${IPFS_API:-https://cloudflare-ipfs.com}
       - CDN_FOLDER=${CDN_FOLDER:-/var/lib/token-images-cdn}

@@ -44,7 +44,7 @@ const resizeAndSaveImages = async ({
 const getImageFromRegistry = async (fingerprint: string) => {
   if (!fingerprint) throw new Error("No fingerprint provided")
 
-  const getAssetData = await CGraphql.assetWithLogoByFingerprint({ fingerprint })
+  const getAssetData = await CGraphql.assetByFingerprint({ fingerprint })
   const { policyId, assetName } = getAssetData.success?.assets[0] || {}
 
   const getAssetInfo = await Koios.assetInformation({
