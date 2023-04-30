@@ -12,8 +12,8 @@ default registry sizes = ["32", "64", "128", "256"]
 default 721 sizes = ["32", "64", "128", "256", "512", "1024"]
 
 examples
-https://mainnet.cdn.raygraph.io/registry/64/asset1zwa4chw9xm7xwk7g46ef94qsj28hmnd7qffhgx
-https://mainnet.cdn.raygraph.io/721/512/asset1zwa4chw9xm7xwk7g46ef94qsj28hmnd7qffhgx
+https://mainnet.cdn.raygraph.io/registry/64/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
+https://mainnet.cdn.raygraph.io/721/512/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
 ```
 
 ## Getting Started
@@ -27,7 +27,7 @@ git clone \
   <summary><b>mainnet</b></summary>
   
 ``` console
-docker compose -p mainnet up -d --build && \
+docker compose -p mainnet up -d --build &&\
 docker compose logs -f
 ```
 </details>
