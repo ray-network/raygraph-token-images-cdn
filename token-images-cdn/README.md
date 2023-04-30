@@ -1,7 +1,7 @@
 # Registry and NFT (CIP-25) Images CDN
 
 ## Overview
-This tool caches an images with specified sizes from [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry) and 721 metadata ([CIP-25](https://cips.cardano.org/cips/cip25/)). Available as a docker container. Visit RayGraph.io for details.
+This tool caches token images with specified sizes from [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry) and 721 metadata ([CIP-25](https://cips.cardano.org/cips/cip25/)). Available as a docker container. Visit RayGraph.io for details.
 
 ## Accessing CDN
 ``` console
@@ -60,8 +60,8 @@ docker compose logs -f
 ``` env
 HOST=0.0.0.0
 PORT=4100
-GRAPHQL_API=https://preview.blockchain.raygraph.io/graphql
-GREST_API=https://preview.blockchain.raygraph.io/grest
+GRAPHQL_API=https://mainnet.blockchain.raygraph.io/graphql
+GREST_API=https://mainnet.blockchain.raygraph.io/grest
 IPFS_API=https://cloudflare-ipfs.com
 CDN_FOLDER=/var/lib/token-images-cdn
 IMG_REGISTRY_SIZES=["32", "64", "128", "256"]
