@@ -1,18 +1,30 @@
 export const detectImageUrlProvider = (imageUrl: string) => {
-  if (imageUrl.startsWith("ipfs://")) {
+  if (Array.isArray(imageUrl)) {
     return {
-      type: "ipfs",
-      url: imageUrl.replaceAll("ipfs://", ""),
+      type: "base64",
+      data: imageUrl.join("").split(";base64,").pop(),
     }
-  } else if (imageUrl.startsWith("https://") || imageUrl.startsWith("http://")) {
-    return {
-      type: "url",
-      url: imageUrl,
+  }
+  if (typeof imageUrl == "string") {
+    if (imageUrl.startsWith("https://") || imageUrl.startsWith("http://")) {
+      return {
+        type: "http",
+        data: imageUrl,
+      }
+    } else if (imageUrl.startsWith("ipfs://")) {
+      return {
+        type: "ipfs",
+        data: imageUrl.replaceAll("ipfs://", ""),
+      }
+    } else if (imageUrl.startsWith("data:image/")) {
+      return {
+        type: "base64",
+        data: imageUrl.split(";base64,").pop(),
+      }
     }
-  } else {
-    return {
-      type: "error",
-      url: "",
-    }
+  }
+  return {
+    type: "error",
+    data: "",
   }
 }

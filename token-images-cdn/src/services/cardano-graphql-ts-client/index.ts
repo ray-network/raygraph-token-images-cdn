@@ -53,3 +53,30 @@ export async function assetByFingerprint({
     { signal }
   )
 }
+
+export async function assetWithLogoByFingerprint({
+  fingerprint,
+  signal,
+}: {
+  fingerprint: string
+  signal?: GenericAbortSignal
+}): Promise<{ success: CGraphqlTypes.IAssetsWithLogoResponse; error: CGraphqlTypes.IError }> {
+  return client.post(
+    "/",
+    {
+      query: `
+        query assetByFingerprint($fingerprint: String!) {
+          assets(where: { fingerprint: { _eq: $fingerprint } }) {
+            policyId
+            assetName
+            logo
+          }
+        }
+    `,
+      variables: {
+        fingerprint,
+      },
+    },
+    { signal }
+  )
+}

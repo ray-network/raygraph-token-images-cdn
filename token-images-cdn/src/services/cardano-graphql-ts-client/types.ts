@@ -14,3 +14,10 @@ export interface IAsset {
   policyId: string
   assetName: string
 }
+
+export interface IAssetsWithLogoResponse {
+  assets: IAssetWithLogo[]
+}
+export interface IAssetWithLogo extends IAsset {
+  logo: string
+}
