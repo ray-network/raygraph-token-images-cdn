@@ -13,20 +13,21 @@ default 721 sizes = ["32", "64", "128", "256", "512", "1024"]
 
 examples
 https://mainnet.cdn.raygraph.io/registry/64/asset1zwa4chw9xm7xwk7g46ef94qsj28hmnd7qffhgx
-https://mainnet.cdn.raygraph.io/721/511/asset1zwa4chw9xm7xwk7g46ef94qsj28hmnd7qffhgx
+https://mainnet.cdn.raygraph.io/721/512/asset1zwa4chw9xm7xwk7g46ef94qsj28hmnd7qffhgx
 ```
 
 ## Getting Started
 ``` console
 git clone \
     https://github.com/ray-network/raygraph-tools.git \
-    && cd raygraph-tools/token-images-cdn
+    && cd raygraph-tools/token-images-cdn \
+    && cp .env.example .env
 ```
 <details open>
   <summary><b>mainnet</b></summary>
   
 ``` console
-docker compose -p mainnet up -d --build &&\
+docker compose -p mainnet up -d --build && \
 docker compose logs -f
 ```
 </details>
