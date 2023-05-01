@@ -33,25 +33,25 @@ docker compose logs -f
 </details>
 
 <details>
-  <summary><b>preprod</b></summary>
+  <summary><b>preview</b></summary>
   
 ``` console
 PORT=4101 \
-GRAPHQL_API="https://preprod.blockchain.raygraph.io/graphql" \
-GREST_API="https://preprod.blockchain.raygraph.io/grest" \
-docker compose -p preprod-cdn up -d --build &&\
+GRAPHQL_API="https://preview.blockchain.raygraph.io/graphql" \
+GREST_API="https://preview.blockchain.raygraph.io/grest" \
+docker compose -p preview-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
 
 <details>
-  <summary><b>preview</b></summary>
+  <summary><b>preprod</b></summary>
   
 ``` console
 PORT=4102 \
-GRAPHQL_API="https://preview.blockchain.raygraph.io/graphql" \
-GREST_API="https://preview.blockchain.raygraph.io/grest" \
-docker compose -p preview-cdn up -d --build &&\
+GRAPHQL_API="https://preprod.blockchain.raygraph.io/graphql" \
+GREST_API="https://preprod.blockchain.raygraph.io/grest" \
+docker compose -p preprod-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
