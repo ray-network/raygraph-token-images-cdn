@@ -4,7 +4,6 @@ import axios from "axios"
 import sharp from "sharp"
 import fs from "fs"
 import * as Koios from "../services/koios-ts-client"
-import * as CGraphql from "../services/cardano-graphql-ts-client"
 import { detectImageUrlProvider } from "../utils"
 
 dotenv.config()
@@ -44,26 +43,29 @@ const resizeAndSaveImages = async ({
 const getImageFromRegistry = async (fingerprint: string) => {
   if (!fingerprint) throw new Error("No fingerprint provided")
 
-  const getAssetData = await CGraphql.assetByFingerprint({ fingerprint })
-  const { policyId, assetName } = getAssetData.success?.assets[0] || {}
-
+  const getAssetData = await Koios.assetList({ paramsString: `fingerprint=eq.${fingerprint}` })
+  if (getAssetData.error) throw new Error("Error getting asset data")
   const getAssetInfo = await Koios.assetInformation({
-    assets: [[policyId, assetName]],
+    assets: [[
+      getAssetData.success[0]?.policy_id,
+      getAssetData.success[0]?.asset_name
+    ]],
   })
 
   if (getAssetInfo.error) throw new Error("Error getting asset data")
   if (getAssetInfo.success) {
-    return Buffer.from(getAssetInfo.success[0]?.token_registry_metadata?.logo, "base64")
+    return Buffer.from(getAssetInfo.success[0]?.token_registry_metadata?.logo || "", "base64")
   }
 }
 
-const getImagesFromIPFS = async (fingerprint: string) => {
+const getImagesFromNetwork = async (fingerprint: string) => {
   if (!fingerprint) throw new Error("No fingerprint provided")
 
-  const getAssetData = await CGraphql.assetByFingerprint({ fingerprint })
+  const getAssetData = await Koios.assetList({ paramsString: `fingerprint=eq.${fingerprint}` })
   if (getAssetData.error) throw new Error("Error getting asset data")
-  const { policyId, assetName } = getAssetData.success?.assets[0] || {}
-
+  const policyId = getAssetData.success[0]?.policy_id
+  const assetName = getAssetData.success[0]?.asset_name
+  
   const getAssetInfo = await Koios.assetInformation({
     assets: [[policyId, assetName]],
   })
@@ -80,7 +82,7 @@ const getImagesFromIPFS = async (fingerprint: string) => {
       case "http":
         return (await axios.get(ipfsImageUrlProvider.data, { responseType: "arraybuffer" })).data
       case "base64":
-        return Buffer.from(ipfsImageUrlProvider.data, "base64")
+        return Buffer.from(ipfsImageUrlProvider.data || "", "base64")
       default:
         throw new Error("Error getting ipfs image url")
     }
@@ -124,7 +126,7 @@ router.get("/721/:size/:fingerprint", async (req, res, next) => {
       res.set(cacheHeaders)
       res.send(image)
     } catch {
-      const ipfsImage = await getImagesFromIPFS(fingerprint)
+      const ipfsImage = await getImagesFromNetwork(fingerprint)
       if (!ipfsImage) throw new Error(`No ipfs image found :: ${fingerprint}`)
       const processedImages = await resizeAndSaveImages({
         rawImage: ipfsImage,

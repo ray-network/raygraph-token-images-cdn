@@ -233,6 +233,14 @@ export interface IPoolDelegators {
   latest_delegation_tx_hash: string
 }
 
+export type AssetListResponse = IAssetList[]
+export interface IAssetList {
+  policy_id: string
+  asset_name: string | null
+  fingerprint: string
+}
+
+
 export type AssetInformationResponse = IAssetInformation[]
 export interface IAssetInformation {
   policy_id: string

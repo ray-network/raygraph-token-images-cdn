@@ -283,6 +283,24 @@ export async function poolUpdates({
   )
 }
 
+export async function assetList({
+  headers,
+  paramsString,
+  signal,
+}: {
+  headers?: object
+  paramsString?: string
+  signal?: GenericAbortSignal
+}): Promise<{ success: KoiosTypes.AssetListResponse; error: KoiosTypes.IError }> {
+  return koiosClient.get(
+    `/asset_list?${paramsString ? paramsString : ""}`,
+    {
+      signal,
+      headers,
+    }
+  )
+}
+
 export async function assetInformation({
   assets,
   signal,
