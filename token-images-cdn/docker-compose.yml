@@ -4,7 +4,6 @@ services:
   token-images-cdn:
     build:
       context: .
-    container_name: token-images-cdn
     ports:
       - ${PORT:-4100}:4100
     volumes:

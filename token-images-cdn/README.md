@@ -27,7 +27,7 @@ git clone \
   <summary><b>mainnet</b></summary>
   
 ``` console
-docker compose -p mainnet up -d --build &&\
+docker compose -p mainnet-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
@@ -39,7 +39,7 @@ docker compose logs -f
 PORT=4101 \
 GRAPHQL_API="https://preprod.blockchain.raygraph.io/graphql" \
 GREST_API="https://preprod.blockchain.raygraph.io/grest" \
-docker compose -p preprod up -d --build &&\
+docker compose -p preprod-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
@@ -51,7 +51,7 @@ docker compose logs -f
 PORT=4102 \
 GRAPHQL_API="https://preview.blockchain.raygraph.io/graphql" \
 GREST_API="https://preview.blockchain.raygraph.io/grest" \
-docker compose -p preprod up -d --build &&\
+docker compose -p preview-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
