@@ -691,6 +691,13 @@ is-promise@^4.0.0:
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-4.0.0.tgz#42ff9f84206c1991d26debf520dd5c01042dd2f3"
   integrity sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==
 
+koios-tiny-client@^1.1010.0:
+  version "1.1010.0"
+  resolved "https://registry.yarnpkg.com/koios-tiny-client/-/koios-tiny-client-1.1010.0.tgz#87fcbd8d69d602d66dd6c2e38396b2a45045be71"
+  integrity sha512-p4CXJJ3SP2xIAc5DUtgdacXYSgXvTSSaQyMuVlUgpfLVZJfMmAVLQLdnAxK4z0R0wWv/u3OXbAAqOt7tEYgRdg==
+  dependencies:
+    axios "^1.4.0"
+
 lodash.flattendeep@^4.0.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"

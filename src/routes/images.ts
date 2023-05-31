@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 import axios from "axios"
 import sharp from "sharp"
 import fs from "fs"
-import * as Koios from "../services/koios-ts-client"
+import Koios from "../services/koios-tiny-client"
 import { detectImageUrlProvider } from "../utils"
 
 dotenv.config()
@@ -43,37 +43,36 @@ const resizeAndSaveImages = async ({
 const getImageFromRegistry = async (fingerprint: string) => {
   if (!fingerprint) throw new Error("No fingerprint provided")
 
-  const getAssetData = await Koios.assetList({ paramsString: `fingerprint=eq.${fingerprint}` })
+  const getAssetData = await Koios.AssetList(`fingerprint=eq.${fingerprint}`)
   if (getAssetData.error) throw new Error("Error getting asset data")
-  const getAssetInfo = await Koios.assetInformation({
-    assets: [[
-      getAssetData.success[0]?.policy_id,
-      getAssetData.success[0]?.asset_name
-    ]],
+  const getAssetInfo = await Koios.AssetInfo({
+    _asset_policy: getAssetData.success.data[0]?.policy_id,
+    _asset_name: getAssetData.success.data[0]?.asset_name,
   })
 
   if (getAssetInfo.error) throw new Error("Error getting asset data")
   if (getAssetInfo.success) {
-    return Buffer.from(getAssetInfo.success[0]?.token_registry_metadata?.logo || "", "base64")
+    return Buffer.from(getAssetInfo.success.data[0]?.token_registry_metadata?.logo || "", "base64")
   }
 }
 
 const getImagesFromNetwork = async (fingerprint: string) => {
   if (!fingerprint) throw new Error("No fingerprint provided")
 
-  const getAssetData = await Koios.assetList({ paramsString: `fingerprint=eq.${fingerprint}` })
+  const getAssetData = await Koios.AssetList(`fingerprint=eq.${fingerprint}`)
   if (getAssetData.error) throw new Error("Error getting asset data")
-  const policyId = getAssetData.success[0]?.policy_id
-  const assetName = getAssetData.success[0]?.asset_name
+  const policyId = getAssetData.success.data[0]?.policy_id
+  const assetName = getAssetData.success.data[0]?.asset_name
   
-  const getAssetInfo = await Koios.assetInformation({
-    assets: [[policyId, assetName]],
+  const getAssetInfo = await Koios.AssetInfo({
+    _asset_policy: getAssetData.success.data[0]?.policy_id,
+    _asset_name: getAssetData.success.data[0]?.asset_name,
   })
 
   if (getAssetInfo.error) throw new Error("Error getting asset info")
   if (getAssetInfo.success) {
     const assetNameAscii = Buffer.from(assetName || "", "hex").toString("utf-8")
-    const txMetadata: any = getAssetInfo.success[0]?.minting_tx_metadata
+    const txMetadata: any = getAssetInfo.success.data[0]?.minting_tx_metadata
     const ipfsImageUrl = txMetadata?.["721"]?.[policyId]?.[assetNameAscii]?.image || ""
     const ipfsImageUrlProvider = detectImageUrlProvider(ipfsImageUrl)
     switch (ipfsImageUrlProvider.type) {
