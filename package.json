@@ -2,12 +2,12 @@
   "name": "token-images-cdn",
   "version": "1.0.0",
   "description": "",
-  "author": "Ray Robot <hello@raynetwork.io>",
+  "author": "Ray Network <hello@raynetwork.io>",
   "homepage": "https://raygraph.io",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ray-network/koios-tiny-client.git"
+    "url": "https://github.com/ray-network/raygraph-token-images-cdn.git"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -16,7 +16,6 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\""
   },
-  "type": "module",
   "dependencies": {
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",

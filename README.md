@@ -37,8 +37,7 @@ docker compose logs -f
   
 ``` console
 PORT=4101 \
-GRAPHQL_API="https://preview.blockchain.raygraph.io/graphql" \
-GREST_API="https://preview.blockchain.raygraph.io/grest" \
+KOIOS_API="https://preview.blockchain.raygraph.io" \
 docker compose -p preview-cdn up -d --build &&\
 docker compose logs -f
 ```
@@ -49,8 +48,7 @@ docker compose logs -f
   
 ``` console
 PORT=4102 \
-GRAPHQL_API="https://preprod.blockchain.raygraph.io/graphql" \
-GREST_API="https://preprod.blockchain.raygraph.io/grest" \
+KOIOS_API="https://preprod.blockchain.raygraph.io" \
 docker compose -p preprod-cdn up -d --build &&\
 docker compose logs -f
 ```
@@ -60,8 +58,7 @@ docker compose logs -f
 ``` env
 HOST=0.0.0.0
 PORT=4100
-GRAPHQL_API=https://mainnet.blockchain.raygraph.io/graphql
-GREST_API=https://mainnet.blockchain.raygraph.io/grest
+KOIOS_API=https://mainnet.blockchain.raygraph.io
 IPFS_API=https://cloudflare-ipfs.com
 CDN_FOLDER=/var/lib/token-images-cdn
 IMG_REGISTRY_SIZES=["32", "64", "128", "256"]
