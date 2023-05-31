@@ -19,8 +19,8 @@ https://mainnet.cdn.raygraph.io/721/512/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4
 ## Getting Started
 ``` console
 git clone \
-    https://github.com/ray-network/raygraph-tools.git \
-    && cd raygraph-tools/token-images-cdn \
+    https://github.com/ray-network/raygraph-token-images-cdn.git \
+    && cd raygraph-token-images-cdn \
     && cp .env.example .env
 ```
 <details open>
