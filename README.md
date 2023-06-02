@@ -6,7 +6,14 @@ This tool caches token images with specified sizes from [cardano-token-registry]
 ## Accessing CDN
 ``` console
 https://mainnet.cdn.raygraph.io/${type}/${size}/${fingerprint}
-
+```
+``` console
+https://preprod.cdn.raygraph.io/${type}/${size}/${fingerprint}
+```
+``` console
+https://preview.cdn.raygraph.io/${type}/${size}/${fingerprint}
+```
+``` console
 type = "registry" | "721"
 default registry sizes = ["32", "64", "128", "256"]
 default 721 sizes = ["32", "64", "128", "256", "512", "1024"]
