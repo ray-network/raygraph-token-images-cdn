@@ -52,6 +52,7 @@ const getImageFromRegistry = async (fingerprint: string) => {
 
   if (getAssetInfo.error) throw new Error("Error getting asset data")
   if (getAssetInfo.success) {
+    if (!getAssetInfo.success.data[0]?.token_registry_metadata?.logo) throw new Error("No logo found in registry")
     return Buffer.from(getAssetInfo.success.data[0]?.token_registry_metadata?.logo || "", "base64")
   }
 }
@@ -75,6 +76,7 @@ const getImagesFromNetwork = async (fingerprint: string) => {
     const txMetadata: any = getAssetInfo.success.data[0]?.minting_tx_metadata
     const ipfsImageUrl = txMetadata?.["721"]?.[policyId]?.[assetNameAscii]?.image || ""
     const ipfsImageUrlProvider = detectImageUrlProvider(ipfsImageUrl)
+    console.log("ipfsImageUrlProvider", ipfsImageUrlProvider.type)
     switch (ipfsImageUrlProvider.type) {
       case "ipfs":
         return (await axios.get(`${IPFS_API}/ipfs/${ipfsImageUrlProvider.data}`, { responseType: "arraybuffer" })).data
@@ -138,7 +140,7 @@ router.get("/721/:size/:fingerprint", async (req, res, next) => {
       res.send(processedImages[size])
     }
   } catch (error) {
-    console.log("721", fingerprint, error)
+    console.log("721", fingerprint, error.name)
     res.set(cacheHeaders)
     res.status(404).send()
   }
