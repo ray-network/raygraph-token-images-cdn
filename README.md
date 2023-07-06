@@ -5,13 +5,13 @@ This tool caches token images with specified sizes from [cardano-token-registry]
 
 ## Accessing CDN
 ``` console
-https://mainnet.cdn.raygraph.io/${type}/${size}/${fingerprint}
+https://cdn.mainnet.raygraph.io/${type}/${size}/${fingerprint}
 ```
 ``` console
-https://preprod.cdn.raygraph.io/${type}/${size}/${fingerprint}
+https://cdn.mainnet.raygraph.io/${type}/${size}/${fingerprint}
 ```
 ``` console
-https://preview.cdn.raygraph.io/${type}/${size}/${fingerprint}
+https://cdn.mainnet.raygraph.io/${type}/${size}/${fingerprint}
 ```
 ``` console
 type = "registry" | "721"
@@ -19,8 +19,8 @@ default registry sizes = ["32", "64", "128", "256"]
 default 721 sizes = ["32", "64", "128", "256", "512", "1024"]
 
 examples
-https://mainnet.cdn.raygraph.io/registry/64/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
-https://mainnet.cdn.raygraph.io/721/512/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
+https://cdn.mainnet.raygraph.io/registry/64/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
+https://cdn.mainnet.raygraph.io/721/512/asset1y7lphaaxkvjw5hl2kpq37nvlvg09qfqsh4qyme
 ```
 
 ## Getting Started
@@ -44,7 +44,7 @@ docker compose logs -f
   
 ``` console
 PORT=4101 \
-KOIOS_API="https://preview.blockchain.raygraph.io" \
+KOIOS_API="https://output.preview.raygraph.io" \
 docker compose -p preview-cdn up -d --build &&\
 docker compose logs -f
 ```
@@ -55,7 +55,7 @@ docker compose logs -f
   
 ``` console
 PORT=4102 \
-KOIOS_API="https://preprod.blockchain.raygraph.io" \
+KOIOS_API="https://output.preprod.raygraph.io" \
 docker compose -p preprod-cdn up -d --build &&\
 docker compose logs -f
 ```
@@ -65,8 +65,8 @@ docker compose logs -f
 ``` env
 HOST=0.0.0.0
 PORT=4100
-KOIOS_API=https://mainnet.blockchain.raygraph.io
-IPFS_API=https://cloudflare-ipfs.com
+KOIOS_API=https://output.mainnet.raygraph.io
+IPFS_API=https://nftstorage.link
 CDN_FOLDER=/var/lib/token-images-cdn
 IMG_REGISTRY_SIZES=["32", "64", "128", "256"]
 IMG_721_SIZES=["32", "64", "128", "256", "512", "1024"]
