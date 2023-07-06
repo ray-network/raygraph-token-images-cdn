@@ -9,15 +9,6 @@ services:
     volumes:
       - token-images-cdn:/var/lib/token-images-cdn
     restart: on-failure
-    environment:
-      - HOST=${HOST:-0.0.0.0}
-      - PORT=${PORT:-4100}
-      - GRAPHQL_API=${GRAPHQL_API:-https://mainnet.blockchain.raygraph.io/graphql}
-      - GREST_API=${GREST_API:-https://api.koios.rest/api/v0}
-      - IPFS_API=${IPFS_API:-https://cloudflare-ipfs.com}
-      - CDN_FOLDER=${CDN_FOLDER:-/var/lib/token-images-cdn}
-      - IMG_REGISTRY_SIZES=${IMG_SIZES:-["32", "64", "128", "256"]}
-      - IMG_721_SIZES=${IMG_SIZES:-["32", "64", "128", "256", "512", "1024"]}
     logging:
       driver: "json-file"
       options:
