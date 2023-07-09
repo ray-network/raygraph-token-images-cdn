@@ -40,23 +40,23 @@ docker compose logs -f
 </details>
 
 <details>
-  <summary><b>preview</b></summary>
+  <summary><b>preprod</b></summary>
   
 ``` console
 PORT=4101 \
-KOIOS_API="https://output.preview.raygraph.io" \
-docker compose -p preview-cdn up -d --build &&\
+KOIOS_API="https://output.preprod.raygraph.io" \
+docker compose -p preprod-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
 
 <details>
-  <summary><b>preprod</b></summary>
+  <summary><b>preview</b></summary>
   
 ``` console
 PORT=4102 \
-KOIOS_API="https://output.preprod.raygraph.io" \
-docker compose -p preprod-cdn up -d --build &&\
+KOIOS_API="https://output.preview.raygraph.io" \
+docker compose -p preview-cdn up -d --build &&\
 docker compose logs -f
 ```
 </details>
