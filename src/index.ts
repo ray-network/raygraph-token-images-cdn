@@ -4,8 +4,8 @@ import dotenv from "dotenv"
 import mountRoutes from "./routes"
 
 dotenv.config()
-const HOST = process.env.HOST
-const PORT = process.env.PORT
+const HOST = "0.0.0.0"
+const PORT = 4100
 const CDN_FOLDER = process.env.CDN_FOLDER
 
 const app = express()

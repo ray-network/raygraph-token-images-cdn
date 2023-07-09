@@ -5,7 +5,7 @@ services:
     build:
       context: .
     ports:
-      - ${PORT:-4100}:4100
+      - 127.0.0.1:${PORT:-4100}:4100
     volumes:
       - token-images-cdn:/var/lib/token-images-cdn
     restart: on-failure
